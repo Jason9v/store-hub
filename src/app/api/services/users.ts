@@ -1,4 +1,4 @@
-import { UserSearchRequest } from '@/types/user-search'
+import UserSearchRequest from '@/types/user-search'
 import { UsersResponse } from '@/types/models/user'
 import { Role } from '@/types/models/user'
 import { mockUserService } from '@/utils'

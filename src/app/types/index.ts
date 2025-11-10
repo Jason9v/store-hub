@@ -1,5 +1,5 @@
-export type { AuthTokenPayload } from './auth-token-payload'
-export type { AxiosErrorResponse } from './axios-error'
+export type { default as AuthTokenPayload } from './auth-token-payload'
+export type { default as AxiosErrorResponse } from './axios-error'
 export * from './models'
 export type { PaginationParams, PaginationType } from './pagination'
-export type { UserSearchParams } from './user-search'
+export type { default as UserSearchParams } from './user-search'

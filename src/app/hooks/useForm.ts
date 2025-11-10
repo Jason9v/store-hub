@@ -29,7 +29,7 @@ const useForm = <T extends Record<string, any>>(
     if (result.success) return true
 
     setErrors(
-      result.error.errors.reduce(
+      result.error.issues.reduce(
         (accumulator, { path, message }) => {
           accumulator[path[0] as keyof T] = message
           return accumulator

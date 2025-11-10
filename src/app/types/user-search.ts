@@ -1,5 +1,7 @@
 import { PaginationParams } from './pagination'
 
-export type UserSearchRequest = PaginationParams & {
+type UserSearchRequest = PaginationParams & {
   searchTerm?: string
 }
+
+export default UserSearchRequest
