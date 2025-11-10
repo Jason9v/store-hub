@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import { getMessages, getLocale } from 'next-intl/server'
 
 import { Navbar, ProtectedContent } from '@/components'
-import Providers from '@/providers'
+import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'Store Hub',

@@ -1,7 +1,9 @@
 export const getBasePath = (): string => {
   if (typeof window === 'undefined') return ''
 
-  return process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const env = process.env.NEXT_PUBLIC_NODE_ENV
+
+  return env === 'production' ? process.env.NEXT_PUBLIC_BASE_PATH || '' : ''
 }
 
 export const withBasePath = (path: string): string => {

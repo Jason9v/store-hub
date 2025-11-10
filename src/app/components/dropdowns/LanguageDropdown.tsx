@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { useClickOutside } from '@/hooks'
 
-import { setLocaleInCookie, withBasePath } from '@/utils'
+import { withBasePath, setLocaleInCookie } from '@/utils'
 
 type Language = {
   code: string

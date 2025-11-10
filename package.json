@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build",
-    "build:gh-pages": "cross-env GITHUB_PAGES=true cross-env NEXT_PUBLIC_BASE_PATH=\"/store-hub\" next build",
+    "build:gh-pages": "cross-env GITHUB_PAGES=true npm run export",
     "deploy": "npm run build:gh-pages && gh-pages -d out",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",

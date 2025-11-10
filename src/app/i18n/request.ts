@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server'
 
-import { getLocaleFromCookie } from '@/utils'
+import { getLocaleFromCookie } from '@/utils/localeServer'
 
 export default getRequestConfig(async () => {
   const locale = await getLocaleFromCookie()

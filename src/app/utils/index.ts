@@ -6,7 +6,7 @@ export {
   removeTokens
 } from './cookieUtils'
 export { formatRelativeDate } from './dateUtils'
-export { getLocaleFromCookie, setLocaleInCookie } from './localeUtils'
+export { setLocaleInCookie } from './localeClient'
 export {
   mockUserService,
   mockOrderService,
