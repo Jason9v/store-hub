@@ -33,13 +33,37 @@ const Providers = ({
   locale: string
 }) => {
   const [mounted, setMounted] = useState(false)
+  const [clientLocale, setClientLocale] = useState(locale)
+  const [clientMessages, setClientMessages] =
+    useState<AbstractIntlMessages>(messages)
 
   useEffect(() => setMounted(true), [])
+
+  useEffect(() => {
+    const hasStaticBasePath = !!process.env.NEXT_PUBLIC_BASE_PATH
+
+    if (!hasStaticBasePath) return
+
+    try {
+      const cookie = document.cookie
+        .split('; ')
+        .find(cookie => cookie.startsWith('NEXT_LOCALE='))
+
+      const nextLocale = cookie?.split('=')[1] || 'en'
+
+      import(`../../messages/${nextLocale}.json`).then(mod => {
+        setClientLocale(nextLocale)
+        setClientMessages(mod.default as AbstractIntlMessages)
+      })
+    } catch {
+      // Fallback remains the server-provided defaults
+    }
+  }, [])
 
   if (!mounted) return null
 
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
+    <NextIntlClientProvider messages={clientMessages} locale={clientLocale}>
       <ThemeProvider attribute="class">
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>

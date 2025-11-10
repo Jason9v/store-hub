@@ -74,7 +74,6 @@ export const registerUser = async (formData: RegisterFormData) => {
 export const loginUser = async (formData: LoginFormData) => {
   const user = mockUserService.getUserByEmail(formData.email)
 
-  console.log(user)
   if (!user) throw new Error('passwordIncorrect')
 
   const isValidPassword = mockPasswordService.validatePassword(
