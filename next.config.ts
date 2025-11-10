@@ -5,14 +5,12 @@ const withNextIntl = createNextIntlPlugin('./src/app/i18n/request.ts')
 
 const isGithubPages = process.env.GITHUB_PAGES === 'true'
 const basePath = isGithubPages ? process.env.NEXT_PUBLIC_BASE_PATH : ''
-const assetPrefix =
-  basePath && !basePath.endsWith('/') ? `${basePath}/` : basePath
 
 const nextConfig: NextConfig = {
   ...(isGithubPages && {
     output: 'export',
     basePath,
-    assetPrefix: assetPrefix,
+    assetPrefix: basePath,
     images: {
       unoptimized: true
     },
