@@ -215,10 +215,4 @@ npm run build:gh-pages
 npx gh-pages -d out
 ```
 
-#### Troubleshooting
-
-- **404 errors**: Make sure `NEXT_PUBLIC_BASE_PATH` matches your repository name
-- **Assets not loading**: Ensure the `.nojekyll` file exists in the `public` folder
-- **Build errors**: Check that all dependencies are installed and the build completes successfully
-
 Built with ❤️ using Next.js and TypeScript
