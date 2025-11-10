@@ -13,6 +13,7 @@ import { fetchOrderById } from '@/api/services'
 import { LoadingSpinner, Snackbar, Pagination } from '@/components/ui'
 
 import { OrderStatus } from '@/components/orders'
+import { withBasePath } from '@/utils'
 
 const ITEMS_PER_PAGE = 4
 
@@ -131,7 +132,7 @@ export const OrderClient = () => {
                     className={`p-2 px-6 ${isFirst ? 'pt-6' : ''} ${isLast ? 'pb-6' : ''}`}
                   >
                     <Image
-                      src={imageUrl}
+                      src={withBasePath(imageUrl)}
                       width={40}
                       height={40}
                       alt={`Item #${index}`}

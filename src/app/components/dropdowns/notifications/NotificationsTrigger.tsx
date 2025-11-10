@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import { withBasePath } from '@/utils'
+
 type NotificationsTriggerProps = {
   unreadCount: number | undefined
   onToggle: () => void
@@ -11,7 +13,7 @@ const NotificationsTrigger = ({
 }: NotificationsTriggerProps) => (
   <button className="flex relative" onClick={onToggle}>
     <Image
-      src="/icons/navbar/notification/notification.svg"
+      src={withBasePath('/icons/navbar/notification/notification.svg')}
       width={20}
       height={20}
       alt=""

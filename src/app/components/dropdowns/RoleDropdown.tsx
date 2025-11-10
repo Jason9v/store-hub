@@ -8,6 +8,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useClickOutside, useDropdownPosition } from '@/hooks'
 
 import { Role } from '@/types'
+import { withBasePath } from '@/utils'
 
 type RoleDropdownProps = {
   role: Role
@@ -56,7 +57,7 @@ const RoleDropdown = ({
 
         <div className="ml-2">
           <Image
-            src="/icons/arrows/arrow-expand.svg"
+            src={withBasePath('/icons/arrows/arrow-expand.svg')}
             width={10}
             height={10}
             alt="Arrow expand"

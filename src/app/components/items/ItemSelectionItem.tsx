@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { Item } from '@/types'
 
 import { addToCart } from '@/store'
+import { withBasePath } from '@/utils'
 
 type OrderItemProps = {
   item: Item
@@ -27,7 +28,7 @@ const ItemSelectionItem = ({ item }: OrderItemProps) => {
       >
         <div className="relative flex flex-col items-center px-5 pt-10 pb-6">
           <Image
-            src={imageUrl}
+            src={withBasePath(imageUrl)}
             alt={nameKey}
             width={100}
             height={100}

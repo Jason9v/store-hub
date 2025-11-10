@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { withBasePath } from '@/utils'
+
 type AuthenticatedLinksProps = {
   isAdmin: boolean
   onLinkClick: () => void
@@ -23,7 +25,7 @@ const AuthenticatedLinks = ({
         onClick={onLinkClick}
       >
         <Image
-          src="/icons/navbar/cart.svg"
+          src={withBasePath('/icons/navbar/cart.svg')}
           width={20}
           height={20}
           alt="My orders"
@@ -42,7 +44,7 @@ const AuthenticatedLinks = ({
             onClick={onLinkClick}
           >
             <Image
-              src="/icons/navbar/group-of-people.svg"
+              src={withBasePath('/icons/navbar/group-of-people.svg')}
               width={20}
               height={20}
               alt="Users management"
@@ -59,7 +61,7 @@ const AuthenticatedLinks = ({
             onClick={onLinkClick}
           >
             <Image
-              src="/icons/navbar/management.svg"
+              src={withBasePath('/icons/navbar/management.svg')}
               width={20}
               height={20}
               alt="Orders management"

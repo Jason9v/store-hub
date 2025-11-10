@@ -5,6 +5,8 @@ import Image from 'next/image'
 
 import { ChangeEvent, useRef } from 'react'
 
+import { withBasePath } from '@/utils'
+
 type SearchBarProps = {
   searchTerm: string
   onSearchChange: (event: ChangeEvent<HTMLInputElement>) => void
@@ -38,7 +40,7 @@ const SearchBar = ({
             className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
           >
             <Image
-              src="/icons/close.svg"
+              src={withBasePath('/icons/close.svg')}
               alt={translations('clearSearch')}
               width={20}
               height={20}
@@ -47,7 +49,7 @@ const SearchBar = ({
           </button>
         ) : (
           <Image
-            src="/icons/search.svg"
+            src={withBasePath('/icons/search.svg')}
             alt="Search"
             width={20}
             height={20}

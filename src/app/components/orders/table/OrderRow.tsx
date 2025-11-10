@@ -9,7 +9,7 @@ import OrderItems from './OrderItems'
 
 import { useUpdateOrderStatus } from '@/hooks'
 
-import { formatRelativeDate } from '@/utils'
+import { formatRelativeDate, withBasePath } from '@/utils'
 
 import { OrderType, OrderStatusEnum, OrderFilterType } from '@/types'
 
@@ -111,7 +111,7 @@ const OrderRow = ({
               className="w-4 h-4 flex items-center justify-center"
             >
               <Image
-                src="/icons/arrows/arrow-expand.svg"
+                src={withBasePath('/icons/arrows/arrow-expand.svg')}
                 width={15}
                 height={15}
                 alt="Arrow expand"

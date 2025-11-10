@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { withBasePath } from '@/utils'
+
 const NotificationsEmptyState = ({
   translations
 }: {
@@ -10,7 +12,7 @@ const NotificationsEmptyState = ({
     <Image
       width={130}
       height={130}
-      src="/icons/navbar/notification/notification-bubbles.png"
+      src={withBasePath('/icons/navbar/notification/notification-bubbles.png')}
       alt="No notifications"
     />
 

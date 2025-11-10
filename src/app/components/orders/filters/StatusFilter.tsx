@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
 import { OrderStatusEnum } from '@/types/models/order'
+import { withBasePath } from '@/utils'
 
 type StatusFilterProps = {
   status?: OrderStatusEnum
@@ -26,7 +27,7 @@ const StatusFilter = ({
     <div className="flex items-center space-x-2">
       <button onClick={onToggle} className="flex items-center">
         <Image
-          src="/icons/filter/purchase-order.svg"
+          src={withBasePath('/icons/filter/purchase-order.svg')}
           width={20}
           height={20}
           alt="Status"
@@ -37,7 +38,7 @@ const StatusFilter = ({
         {translations('orderByStatus')}
 
         <Image
-          src="/icons/arrows/arrow-expand.svg"
+          src={withBasePath('/icons/arrows/arrow-expand.svg')}
           width={10}
           height={10}
           alt="Arrow expand"

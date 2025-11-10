@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { useClickOutside } from '@/hooks'
 
-import { setLocaleInCookie } from '@/utils'
+import { setLocaleInCookie, withBasePath } from '@/utils'
 
 type Language = {
   code: string
@@ -22,9 +22,9 @@ const LanguageDropdown = () => {
   useClickOutside([ref], () => setIsOpen(false))
 
   const languages: Language[] = [
-    { code: 'en', flag: '/icons/flags/en.png' },
-    { code: 'it', flag: '/icons/flags/it.png' },
-    { code: 'nl', flag: '/icons/flags/nl.png' }
+    { code: 'en', flag: withBasePath('/icons/flags/en.png') },
+    { code: 'it', flag: withBasePath('/icons/flags/it.png') },
+    { code: 'nl', flag: withBasePath('/icons/flags/nl.png') }
   ]
 
   const currentLanguage = languages.find(({ code }) => code === locale)
@@ -47,7 +47,7 @@ const LanguageDropdown = () => {
         )}
 
         <Image
-          src="/icons/arrows/arrow-expand.svg"
+          src={withBasePath('/icons/arrows/arrow-expand.svg')}
           width={10}
           height={10}
           alt="Arrow expand"

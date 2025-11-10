@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { CartItem as CartItemType } from '@/store'
+import { withBasePath } from '@/utils'
 
 type CartItemProps = {
   item: CartItemType
@@ -17,7 +18,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
     <li className="flex flex-col lg:flex-row justify-between items-center p-2 rounded-md transition-all duration-300">
       <div className="flex items-center mb-2 lg:mr-10">
         <Image
-          src={imageUrl}
+          src={withBasePath(imageUrl)}
           alt={nameKey}
           width={30}
           height={30}
@@ -66,7 +67,7 @@ const CartItem = ({ item, onRemove, onQuantityChange }: CartItemProps) => {
           <Image
             width={20}
             height={20}
-            src="/icons/trash.svg"
+            src={withBasePath('/icons/trash.svg')}
             alt="Trash"
             className="transition-all duration-300"
             priority

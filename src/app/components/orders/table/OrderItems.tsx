@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Pagination from '@/components/ui/Pagination'
 
 import { OrderItem } from '@/types/models/order'
+import { withBasePath } from '@/utils'
 
 type OrderItemsProps = {
   items: OrderItem[]
@@ -75,7 +76,7 @@ const OrderItems = ({ items }: OrderItemsProps) => {
 
                 <td className="px-6 py-2 text-left">
                   <Image
-                    src={imageUrl}
+                    src={withBasePath(imageUrl)}
                     alt={nameKey}
                     width={30}
                     height={30}

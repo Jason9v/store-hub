@@ -15,6 +15,7 @@ import { useForm } from '@/hooks'
 import { useMutation } from '@tanstack/react-query'
 
 import { forgotPassword } from '@/api/services'
+import { withBasePath } from '@/utils'
 
 type ForgotPasswordModalProps = {
   onClose: () => void
@@ -89,7 +90,7 @@ const ForgotPasswordModal = ({ onClose }: ForgotPasswordModalProps) => {
                    dark:hover:bg-gray-700 rounded-full transition-colors"
         >
           <Image
-            src="/icons/close.svg"
+            src={withBasePath('/icons/close.svg')}
             alt="Close modal"
             width={15}
             height={15}

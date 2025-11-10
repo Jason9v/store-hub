@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 
 import { useClickOutside, useDropdownPosition } from '@/hooks'
-import { getOrderStatusLabels } from '@/utils'
+import { getOrderStatusLabels, withBasePath } from '@/utils'
 import { OrderStatusEnum } from '@/types'
 
 type OrderStatusProps = {
@@ -66,7 +66,7 @@ const OrderStatus = ({
         {statusLabels[status]}
 
         <Image
-          src="/icons/arrows/arrow-expand.svg"
+          src={withBasePath('/icons/arrows/arrow-expand.svg')}
           width={10}
           height={10}
           alt="Arrow expand"

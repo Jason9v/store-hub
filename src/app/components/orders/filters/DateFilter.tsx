@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { withBasePath } from '@/utils'
+
 type DateFilterProps = {
   startDate?: string
   endDate?: string
@@ -26,7 +28,7 @@ const DateFilter = ({
     <div className="flex items-center space-x-2">
       <button onClick={onToggle} className="flex items-center">
         <Image
-          src="/icons/filter/calendar.svg"
+          src={withBasePath('/icons/filter/calendar.svg')}
           width={20}
           height={20}
           alt="Calendar"
@@ -37,7 +39,7 @@ const DateFilter = ({
         {translations('orderByDate')}
 
         <Image
-          src="/icons/arrows/arrow-expand.svg"
+          src={withBasePath('/icons/arrows/arrow-expand.svg')}
           width={10}
           height={10}
           alt="Arrow expand"

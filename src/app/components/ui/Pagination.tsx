@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+import { withBasePath } from '@/utils'
+
 type PaginationProps = {
   currentPage: number
   totalPages: number | undefined
@@ -60,7 +62,7 @@ const Pagination = ({
       className="text-foreground flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9"
     >
       <Image
-        src="/icons/arrows/arrow-back.svg"
+        src={withBasePath('/icons/arrows/arrow-back.svg')}
         width={15}
         height={15}
         alt={direction === 'previous' ? 'Previous' : 'Next'}

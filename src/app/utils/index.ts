@@ -21,3 +21,4 @@ export {
   adjustStatusCount
 } from './orderUtils'
 export { updateUserRoleInArray, sortUsersByRoleAndName } from './userUtils'
+export { getBasePath, withBasePath } from './imageUtils'

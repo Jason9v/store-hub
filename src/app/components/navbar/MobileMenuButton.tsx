@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 
+import { withBasePath } from '@/utils'
+
 type MobileMenuButtonProps = {
   onClick: () => void
   menuIconRef: React.RefObject<HTMLButtonElement | null>
@@ -14,7 +16,7 @@ const MobileMenuButton = ({ onClick, menuIconRef }: MobileMenuButtonProps) => (
     onClick={onClick}
   >
     <Image
-      src="/icons/navbar/menu.svg"
+      src={withBasePath('/icons/navbar/menu.svg')}
       width={22}
       height={22}
       alt="Menu"
