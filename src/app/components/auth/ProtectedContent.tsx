@@ -1,14 +1,14 @@
 'use client'
 
-import { ReactNode, useEffect } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '@/store'
 
-import { LoginForm } from '@/components/auth'
+import { LoginForm, LoadingSpinner, BackButton } from '@/components'
 
-import { BackButton } from '@/components/buttons'
+import { getAccessToken } from '@/utils'
 
 type ProtectedContentProps = {
   children: ReactNode
@@ -18,6 +18,7 @@ const ProtectedContent = ({ children }: ProtectedContentProps) => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   )
+  const [isAuthStateSynced, setIsAuthStateSynced] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -25,16 +26,22 @@ const ProtectedContent = ({ children }: ProtectedContentProps) => {
   const isAuthPage = authPages.includes(pathname)
 
   useEffect(() => {
+    const token = getAccessToken()
+    const tokenExists = !!token
+    
+    if (isAuthenticated === tokenExists) 
+      setIsAuthStateSynced(true)
+  }, [isAuthenticated])
+
+  useEffect(() => {
     if (isAuthenticated && isAuthPage) router.replace('/')
   }, [isAuthenticated, isAuthPage, router])
 
-  if (!isAuthenticated) {
-    if (isAuthPage) return <>{children}</>
+  if (!isAuthStateSynced)
+    return <LoadingSpinner />
 
-    if (pathname === '/') return <LoginForm />
-
-    return <LoginForm />
-  }
+  if (!isAuthenticated) 
+    return isAuthPage ? <>{children}</> : <LoginForm />
 
   if (isAuthenticated && isAuthPage) return null
 

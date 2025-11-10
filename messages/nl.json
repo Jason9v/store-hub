@@ -147,7 +147,8 @@
     "title": "Gebruikerspanel",
     "noUsersFound": "Geen gebruikers gevonden.",
     "searchPlaceholder": "Zoeken",
-    "roleUpdatedSuccessfully": "Rol succesvol bijgewerkt!"
+    "roleUpdatedSuccessfully": "Rol succesvol bijgewerkt!",
+    "clearSearch": "Wis zoekopdracht"
   },
   "Roles": {
     "admin": "Beheerder",

@@ -147,7 +147,8 @@
     "title": "Users panel",
     "noUsersFound": "No users found.",
     "searchPlaceholder": "Search",
-    "roleUpdatedSuccessfully": "Role updated successfully!"
+    "roleUpdatedSuccessfully": "Role updated successfully!",
+    "clearSearch": "Clear search"
   },
   "Roles": {
     "admin": "Admin",

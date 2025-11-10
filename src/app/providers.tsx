@@ -1,14 +1,14 @@
 'use client'
 
 import { ReactNode, useEffect, useState } from 'react'
-import { NextIntlClientProvider } from 'next-intl'
-import { AbstractIntlMessages } from 'use-intl'
+import { AbstractIntlMessages, NextIntlClientProvider } from 'next-intl'
 import { ThemeProvider } from 'next-themes'
 import { Provider, useDispatch } from 'react-redux'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import store, { AppDispatch, setAuthState } from '@/store'
 import { getAccessToken } from '@/utils'
+import { LoadingSpinner } from '@/components/ui'
 
 const queryClient = new QueryClient()
 
@@ -36,31 +36,43 @@ const Providers = ({
   const [clientLocale, setClientLocale] = useState(locale)
   const [clientMessages, setClientMessages] =
     useState<AbstractIntlMessages>(messages)
+  const [messagesLoaded, setMessagesLoaded] = useState(false)
 
   useEffect(() => setMounted(true), [])
 
   useEffect(() => {
     const hasStaticBasePath = !!process.env.NEXT_PUBLIC_BASE_PATH
 
-    if (!hasStaticBasePath) return
+    if (!hasStaticBasePath) {
+      setMessagesLoaded(true)
+      return
+    }
 
-    try {
+    const loadMessages = async () => {
       const cookie = document.cookie
         .split('; ')
         .find(cookie => cookie.startsWith('NEXT_LOCALE='))
 
       const nextLocale = cookie?.split('=')[1] || 'en'
 
-      import(`../../messages/${nextLocale}.json`).then(mod => {
+      try {
+        const messagesModule = await import(`../../messages/${nextLocale}.json`)
         setClientLocale(nextLocale)
-        setClientMessages(mod.default as AbstractIntlMessages)
-      })
-    } catch {
-      // Fallback remains the server-provided defaults
+        setClientMessages(messagesModule.default as AbstractIntlMessages)
+      } catch {
+        // Fallback remains the server-provided defaults
+      } finally {
+        setMessagesLoaded(true)
+      }
     }
+
+    loadMessages()
   }, [])
 
-  if (!mounted) return null
+  // Show loading spinner during mount or message loading instead of null
+  if (!mounted || !messagesLoaded) {
+    return <LoadingSpinner />
+  }
 
   return (
     <NextIntlClientProvider messages={clientMessages} locale={clientLocale}>

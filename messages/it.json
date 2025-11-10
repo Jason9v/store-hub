@@ -147,7 +147,8 @@
     "title": "Pannello degli utenti",
     "noUsersFound": "Nessun utente trovato.",
     "searchPlaceholder": "Cerca",
-    "roleUpdatedSuccessfully": "Ruolo aggiornato con successo!"
+    "roleUpdatedSuccessfully": "Ruolo aggiornato con successo!",
+    "clearSearch": "Cancella ricerca"
   },
   "Roles": {
     "admin": "Amministratore",

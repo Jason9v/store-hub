@@ -1,20 +1,19 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useState, useCallback, ChangeEvent } from 'react'
+import { useState, useCallback, ChangeEvent, useEffect } from 'react'
 
 import { useUsersMutation, useUsersQuery } from '@/hooks/users'
 
 import withAdminRedirect from '@/hoc/withAdminRedirect'
 
-import { LoadingSpinner, Snackbar } from '@/components/ui'
-
-import { SearchBar, NoUsersMessage, UserList } from '@/components/users'
+import { LoadingSpinner, Snackbar, SearchBar, NoUsersMessage, UserList } from '@/components'
 
 import { Role } from '@/types'
 
 const UsersPanel = () => {
   const translations = useTranslations('UsersPanel')
+  const [inputValue, setInputValue] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
@@ -30,6 +29,15 @@ const UsersPanel = () => {
     message: '',
     variant: 'info'
   })
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearchTerm(inputValue)
+      setCurrentPage(1)
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [inputValue])
 
   const { data: paginatedUsers, isLoading } = useUsersQuery(
     searchTerm,
@@ -55,13 +63,13 @@ const UsersPanel = () => {
 
   const handleSearchChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(event.target.value)
-      setCurrentPage(1)
+      setInputValue(event.target.value)
     },
     []
   )
 
   const handleClearSearch = useCallback(() => {
+    setInputValue('')
     setSearchTerm('')
     setCurrentPage(1)
   }, [])
@@ -87,7 +95,7 @@ const UsersPanel = () => {
         <p className="text-xl font-semibold">{translations('title')}</p>
 
         <SearchBar
-          searchTerm={searchTerm}
+          searchTerm={inputValue}
           onSearchChange={handleSearchChange}
           onClearSearch={handleClearSearch}
         />

@@ -135,8 +135,6 @@ export const fetchAllOrders = async (
 
 export const fetchOrderStats = async (): Promise<OrderStats> => {
   const orders = mockOrderService.getOrders()
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
 
   const stats: OrderStats = {
     deliveredToday: 0,
@@ -145,14 +143,7 @@ export const fetchOrderStats = async (): Promise<OrderStats> => {
   }
 
   orders.forEach(order => {
-    const orderDate = new Date(order.date)
-    orderDate.setHours(0, 0, 0, 0)
-
-    if (
-      order.status === OrderStatusEnum.Delivered &&
-      orderDate.getTime() === today.getTime()
-    )
-      stats.deliveredToday++
+    if (order.status === OrderStatusEnum.Delivered) stats.deliveredToday++
 
     if (order.status === OrderStatusEnum.Pending) stats.pendingOrders++
 

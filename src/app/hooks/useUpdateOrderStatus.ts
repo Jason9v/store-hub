@@ -53,6 +53,7 @@ export const useUpdateOrderStatus = (
       if (previousOrders)
         queryClient.setQueryData<OrdersResponse>(queryKey, oldData => {
           if (!oldData) return oldData
+
           return {
             ...oldData,
             orders: oldData.orders.map(order =>
@@ -67,12 +68,29 @@ export const useUpdateOrderStatus = (
           return { ...oldData, status: newStatus }
         })
 
-      if (previousStatus !== null)
-        updateOrderStats(queryClient, previousStatus, newStatus)
+      const deliveryDate =
+        newStatus === OrderStatusEnum.Delivered
+          ? new Date().toISOString()
+          : undefined
+
+      updateOrderStats(
+        queryClient,
+        previousStatus,
+        newStatus,
+        deliveryDate
+      )
 
       return { previousOrders, previousOrder, previousStats }
     },
-    onError: (_, __, context) => {
+    onError: (
+      _: Error,
+      __: { orderId: number; newStatus: OrderStatusEnum },
+      context?: {
+        previousOrders?: OrdersResponse
+        previousOrder?: OrderType
+        previousStats?: OrderStats
+      }
+    ) => {
       if (context?.previousOrders)
         queryClient.setQueryData(queryKey, context.previousOrders)
 
@@ -89,7 +107,6 @@ export const useUpdateOrderStatus = (
       queryClient.invalidateQueries({ queryKey: ['my-orders'] })
       queryClient.invalidateQueries({ queryKey: ['all'] })
       queryClient.invalidateQueries({ queryKey: ['notifications'] })
-      queryClient.invalidateQueries({ queryKey: ['stats'] })
       onSuccess?.()
     }
   })
