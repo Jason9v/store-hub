@@ -7,7 +7,13 @@ import { useUsersMutation, useUsersQuery } from '@/hooks/users'
 
 import withAdminRedirect from '@/hoc/withAdminRedirect'
 
-import { LoadingSpinner, Snackbar, SearchBar, NoUsersMessage, UserList } from '@/components'
+import {
+  LoadingSpinner,
+  Snackbar,
+  SearchBar,
+  NoUsersMessage,
+  UserList
+} from '@/components'
 
 import { Role } from '@/types'
 

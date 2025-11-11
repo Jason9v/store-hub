@@ -28,20 +28,17 @@ const ProtectedContent = ({ children }: ProtectedContentProps) => {
   useEffect(() => {
     const token = getAccessToken()
     const tokenExists = !!token
-    
-    if (isAuthenticated === tokenExists) 
-      setIsAuthStateSynced(true)
+
+    if (isAuthenticated === tokenExists) setIsAuthStateSynced(true)
   }, [isAuthenticated])
 
   useEffect(() => {
     if (isAuthenticated && isAuthPage) router.replace('/')
   }, [isAuthenticated, isAuthPage, router])
 
-  if (!isAuthStateSynced)
-    return <LoadingSpinner />
+  if (!isAuthStateSynced) return <LoadingSpinner />
 
-  if (!isAuthenticated) 
-    return isAuthPage ? <>{children}</> : <LoginForm />
+  if (!isAuthenticated) return isAuthPage ? <>{children}</> : <LoginForm />
 
   if (isAuthenticated && isAuthPage) return null
 

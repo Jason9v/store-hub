@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import './globals.css'
 
 import { ReactNode } from 'react'
 import { Metadata } from 'next'
@@ -8,7 +8,7 @@ import { Navbar, ProtectedContent } from '@/components'
 import Providers from './providers'
 
 export const metadata: Metadata = {
-  title: 'Store Hub',
+  title: 'Storefront',
   description: `Online store offering a wide range of products to 
                 support your journey. From high-quality items to essential tools, 
                 our carefully curated collection helps you achieve your goals. 

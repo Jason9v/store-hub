@@ -70,9 +70,7 @@ const Providers = ({
   }, [])
 
   // Show loading spinner during mount or message loading instead of null
-  if (!mounted || !messagesLoaded) {
-    return <LoadingSpinner />
-  }
+  if (!mounted || !messagesLoaded) return <LoadingSpinner />
 
   return (
     <NextIntlClientProvider messages={clientMessages} locale={clientLocale}>

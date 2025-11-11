@@ -1,4 +1,4 @@
-# Store Hub - E-Commerce Web Application
+# Storefront
 
 Modern, full-featured e-commerce web application built with Next.js, offering authentication, notifications, localization, and comprehensive order management features.
 

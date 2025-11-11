@@ -73,12 +73,7 @@ export const useUpdateOrderStatus = (
           ? new Date().toISOString()
           : undefined
 
-      updateOrderStats(
-        queryClient,
-        previousStatus,
-        newStatus,
-        deliveryDate
-      )
+      updateOrderStats(queryClient, previousStatus, newStatus, deliveryDate)
 
       return { previousOrders, previousOrder, previousStats }
     },

@@ -21,7 +21,7 @@ const NavbarBrand = () => (
         className="ml-3 font-bold uppercase text-2xl text-shadow text-shadow-blur-10
                      text-shadow-foreground dark:text-shadow-foreground-dark tracking-wider"
       >
-        Store Hub
+        Storefront
       </span>
     </div>
   </Link>
